@@ -1,5 +1,6 @@
 import React from "react";
 import GoogleIcon from "../assets/icons/GoogleIcon";
+import { FaGithub } from "react-icons/fa";
 const Register = () => {
   return (
     <div className="flex justify-center">
@@ -58,6 +59,14 @@ const Register = () => {
             >
               Continue with Google
               <GoogleIcon color="currentColor" />
+            </button>
+            <button
+              className="flex justify-between text-center items-center btn-danger"
+              type="button"
+        
+            >
+              Continue with Github
+              <FaGithub color="currentColor" className="text-3xl" />
             </button>
           </form>
         </div>

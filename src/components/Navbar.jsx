@@ -4,6 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import avatar from "../assets/icons/avatar.png";
 import Switch from "./Switch";
+import { FaGithub } from "react-icons/fa";
 
 const navigation = [
   { name: "Dashboard", href: "#", current: true },
