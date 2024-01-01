@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import GoogleIcon from "../assets/icons/GoogleIcon";
 import { FaGithub } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 
 const Login = () => {
   const { signIn,signUpWithGoogle,signUpProviderGithub } = useAuthContext();
+  const navigate=useNavigate()
   const [info, setInfo] = useState({
     email: "",
     password: "",
@@ -18,6 +19,8 @@ const Login = () => {
     e.preventDefault();
     const { email, password } = info;
     signIn(email, password);
+    navigate("/")
+
   };
 
   return (
@@ -31,11 +34,12 @@ const Login = () => {
             <div className="relative z-0 w-full mb-6 group">
               <input
                 name="email"
-                className="peer"
+                className="peer "
                 type="email"
                 placeholder=" "
                 required
                 onChange={handleChange}
+                autoComplete="off"
               />
               <label htmlFor="floating_email">Email</label>
             </div>

@@ -37,6 +37,7 @@ const Register = () => {
                 required
                 placeholder=" "
                 onChange={handleChange}
+                autoComplete="off"
               />
               <label htmlFor="floating_text">First Name</label>
             </div>
@@ -48,6 +49,7 @@ const Register = () => {
                 required
                 placeholder=" "
                 onChange={handleChange}
+                autoComplete="off"
               />
               <label htmlFor="floating_text">Last Name</label>
             </div>
@@ -59,6 +61,7 @@ const Register = () => {
                 placeholder=" "
                 required
                 onChange={handleChange}
+                autoComplete="off"
               />
               <label htmlFor="floating_email">Email</label>
             </div>
