@@ -19,7 +19,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
   // const currentUser = { displayName: "Mücahit Mehmet KÜÇÜKTEPE" };
-  const {currentUser}=useAuthContext()
+  const {currentUser,logOut}=useAuthContext()
   // const currentUser = false;
   return (
     <>
@@ -135,6 +135,7 @@ export default function Navbar() {
                                   active ? "bg-gray-100" : "",
                                   "block px-4 py-2 text-sm text-gray-700 cursor-pointer"
                                 )}
+                                onClick={logOut}
                               >
                                 Logout
                               </span>
