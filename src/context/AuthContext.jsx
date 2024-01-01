@@ -1,8 +1,10 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../auth/firebase";
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 export const AuthContext = createContext();
@@ -11,7 +13,12 @@ export const useAuthContext = () => {
 };
 
 const AuthContextProvider = ({ children }) => {
-  const navigate=useNavigate()
+  const [currentUser, setCurrentUser] = useState(false);
+  useEffect(() => {
+    userObserver();
+  }, []);
+
+  const navigate = useNavigate();
   const createUser = async (email, password, displayName) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -19,6 +26,9 @@ const AuthContextProvider = ({ children }) => {
         email,
         password
       );
+      await updateProfile(auth.currentUser, {
+        displayName: displayName,
+      });
       console.log(userCredential);
       console.log(displayName);
     } catch (error) {
@@ -33,15 +43,24 @@ const AuthContextProvider = ({ children }) => {
         password
       );
       console.log(userCredential);
-      navigate("/")
-
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
   };
+  const userObserver = () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { email, displayName, photoUrl } = user;
+        setCurrentUser({ email, displayName, photoUrl });
+      } else {
+      }
+    });
+  };
   const values = {
     createUser,
     signIn,
+    currentUser
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
