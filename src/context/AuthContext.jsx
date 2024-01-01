@@ -90,7 +90,7 @@ const AuthContextProvider = ({ children }) => {
 
   const signUpProviderGithub = () => {
     //* => Authentication => sign-in-method => enable Github
-    //! Github ile girişi enable yap
+    //! Github ile girişi enable yap daha sonra githup developer ayarlarından app is si ve token ı al
  
     const provider = new GithubAuthProvider();
     signInWithPopup(auth, provider)
