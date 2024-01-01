@@ -109,7 +109,7 @@ const AuthContextProvider = ({ children }) => {
     currentUser,
     logOut,
     signUpWithGoogle,
-    signUpProviderGithub
+    signUpProviderGithub,
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
