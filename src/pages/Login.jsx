@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import GoogleIcon from "../assets/icons/GoogleIcon";
 import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
