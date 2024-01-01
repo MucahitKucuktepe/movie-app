@@ -27,15 +27,26 @@ const MovieContextProvider = ({ children }) => {
   const popularMovies = async () => {
     try {
       const res = await axios(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`
+        `https://api.themoviedb.org/3/movie/12?api_key=${API_KEY}`
       );
-      console.log(res.data)
+      console.log(res.data);
     } catch (error) {}
+  };
+  const withGenresSaerch = async () => {
+    try {
+        const res = await axios(
+            `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=27`
+          );
+          console.log(res.data.results)
+    } catch (error) {
+        console.log(error)
+    }
   };
   useEffect(() => {
     getMovies();
     trendingMovies();
-    popularMovies()
+    popularMovies();
+    withGenresSaerch()
   }, []);
 
   return <MovieContext.Provider value={null}>{children}</MovieContext.Provider>;
