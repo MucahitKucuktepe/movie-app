@@ -7,10 +7,10 @@ import Switch from "./Switch";
 import { useAuthContext } from "../context/AuthContext";
 
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
+  { name: "Trending Movies", href: "/trending" },
+  { name: "Top Rated Movies", href: "/toprated",  },
+  { name: "Popular Novies", href: "popular",  },
+  { name: "Now Playing", href: "now",  },
 ];
 
 function classNames(...classes) {
