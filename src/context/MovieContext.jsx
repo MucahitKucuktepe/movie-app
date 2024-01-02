@@ -32,15 +32,7 @@ const MovieContextProvider = ({ children }) => {
     }
   };
 
-  const popularMovies = async (page) => {
-    try {
-      const res = await axios(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=${page}`
-      );
-      console.log(res.data);
-      setMovies(res.data.results);
-    } catch (error) {}
-  };
+  
   const withGenresSaerch = async () => {
     try {
       const res = await axios(
@@ -66,7 +58,6 @@ const MovieContextProvider = ({ children }) => {
         loading,
         getMovies,
         moviePages,
-        popularMovies,
       }}
     >
       {children}

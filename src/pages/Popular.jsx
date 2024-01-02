@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useMovieContex } from "../context/MovieContext";
 import MovieCard from "../components/MovieCard";
 import spinner from "../assets/Spinner-1.1s-250px.png";
 import { useAuthContext } from "../context/AuthContext";
 import { toastWarnNotify } from "../helpers/ToastNotify";
+import axios from "axios";
 const API_KEY = process.env.REACT_APP_TMDB_KEY;
 // const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search}`;
 const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
@@ -11,11 +12,25 @@ const Main = () => {
   const [page, setPage] = useState(1);
   const [isActiveMinus, setIsActiveMinus] = useState(false);
   const [isActivePlus, setIsActivePlus] = useState(false);
+  const [popular, setPopular] = useState([]);
+  const [loading, setLoading] = useState(false);
   // const [currentPage, setCurrentPage] = useState(0);
-  const { getMovies, movies, loading, moviePages } = useMovieContex();
+  const { getMovies,  moviePages } = useMovieContex();
   const { currentUser } = useAuthContext();
   const inputRef = useRef();
-  console.log(movies);
+  const popularMovies = async (page) => {
+    try {
+      const res = await axios(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=${page}`
+      );
+      console.log(res.data);
+      setPopular(res.data.results);
+    } catch (error) {}
+  };
+  useEffect(() => {
+   popularMovies(1)
+  }, [])
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,21 +53,21 @@ const Main = () => {
     setIsActivePlus(false);
     console.log(page);
     // console.log(currentPage);
-    moviePages(page - 3);
+    popularMovies(page - 3);
   };
   const handlePlus = (e) => {
     setPage(prevPage => prevPage + 3);
     setIsActiveMinus(false);
     setIsActivePlus(!isActivePlus);
     console.log(page);
-    moviePages(page+3);
+    popularMovies(page+3);
   };
   const handlePage = (e) => {
     console.log(e.target.innerText);
     const currentPage = e.target.innerText;
     // setCurrentPage(e.target.innerText);
     console.log(currentPage);
-    moviePages(currentPage);
+    popularMovies(currentPage);
     setIsActiveMinus(false);
     setIsActivePlus(false);
   };
@@ -77,7 +92,7 @@ const Main = () => {
             <span>Loading...</span>
           </div>
         ) : (
-          movies.map((movie) => <MovieCard key={movie.id} {...movie} />)
+          popular.map((popular) => <MovieCard key={popular.id} {...popular} />)
         )}
       </div>
       <div className="flex justify-center">
