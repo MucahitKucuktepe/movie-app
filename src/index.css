@@ -24,7 +24,7 @@
     @apply mt-[10vh] mx-auto overflow-hidden relative rounded-[8px] bg-gray-100 dark:bg-[#1c1c1c] before:content-[""] before:absolute before:w-[380px] before:h-[420px] before:top-[-50%] before:left-[-50%] after:content-[""] after:absolute after:w-[380px] after:h-[420px] after:top-[-50%] after:left-[-50%] custom-linear-gradient;
   }
   .form-container form {
-    @apply absolute inset-[2px] rounded-[8px] bg-gray-100 dark:bg-gray-dark-second z-[10] flex flex-col py-[50px] px-[40px];
+    @apply absolute inset-[2px] rounded-[8px] bg-gray-600 dark:bg-gray-dark-second z-[10] flex flex-col py-[50px] px-[40px];
   }
 }
 
