@@ -12,11 +12,11 @@ const Main = () => {
   const [isActiveMinus, setIsActiveMinus] = useState(false);
   const [isActivePlus, setIsActivePlus] = useState(false);
   // const [currentPage, setCurrentPage] = useState(0);
-  const { getMovies, movies, loading, moviePages } = useMovieContex();
+  const { getMovies, loading, nowPlaying, now } = useMovieContex();
   const { currentUser } = useAuthContext();
   const inputRef = useRef();
-  console.log(movies);
 
+  console.log(now);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -32,27 +32,27 @@ const Main = () => {
   };
   const handleMinus = (e) => {
     if (page > 3) {
-      setPage(prevPage => prevPage - 3);
+      setPage((prevPage) => prevPage - 3);
     }
     setIsActiveMinus(!isActiveMinus);
     setIsActivePlus(false);
     console.log(page);
     // console.log(currentPage);
-    moviePages(page - 3);
+    nowPlaying(page - 3);
   };
   const handlePlus = (e) => {
-    setPage(prevPage => prevPage + 3);
+    setPage((prevPage) => prevPage + 3);
     setIsActiveMinus(false);
     setIsActivePlus(!isActivePlus);
     console.log(page);
-    moviePages(page+3);
+    nowPlaying(page + 3);
   };
   const handlePage = (e) => {
     console.log(e.target.innerText);
     const currentPage = e.target.innerText;
     // setCurrentPage(e.target.innerText);
     console.log(currentPage);
-    moviePages(currentPage);
+    nowPlaying(currentPage);
     setIsActiveMinus(false);
     setIsActivePlus(false);
   };
@@ -77,7 +77,7 @@ const Main = () => {
             <span>Loading...</span>
           </div>
         ) : (
-          movies.map((movie) => <MovieCard key={movie.id} {...movie} />)
+          now.map((now) => <MovieCard key={now.id} {...now} />)
         )}
       </div>
       <div className="flex justify-center">

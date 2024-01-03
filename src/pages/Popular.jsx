@@ -13,9 +13,9 @@ const Main = () => {
   const [isActiveMinus, setIsActiveMinus] = useState(false);
   const [isActivePlus, setIsActivePlus] = useState(false);
   const [popular, setPopular] = useState([]);
-  const [loading, setLoading] = useState(false);
+ 
   // const [currentPage, setCurrentPage] = useState(0);
-  const { getMovies,  moviePages } = useMovieContex();
+  const { getMovies,loading } = useMovieContex();
   const { currentUser } = useAuthContext();
   const inputRef = useRef();
   const popularMovies = async (page) => {

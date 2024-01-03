@@ -10,13 +10,17 @@ const FEATURED_API = `https://api.themoviedb.org/3/discover/movie?api_key=${API_
 const MovieContextProvider = ({ children }) => {
   const page = 1;
   const [movies, setMovies] = useState([]);
+  const [popular, setPopular] = useState([]);
+  const [now, setNow] = useState([]);
 
   const [loading, setLoading] = useState(false);
   const getMovies = async (url) => {
+    setLoading(true)
     try {
       const res = await axios(url);
       console.log(res.data.results);
       setMovies(res.data.results);
+      setLoading(false)
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +36,31 @@ const MovieContextProvider = ({ children }) => {
     }
   };
 
-  
+  const popularMovies = async (e) => {
+    try {
+      const res = await axios(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=${page}`
+      );
+      console.log(res.data.results);
+      setPopular(res.data.results);
+      console.log(popular);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const nowPlaying = async (e) => {
+    setLoading(true)
+    try {
+      const res = await axios(
+        `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&page=${page}`
+      );
+      console.log(res.data.results);
+      setNow(res.data.results);
+      console.log(now)
+      setLoading(false)
+    } catch (error) {}
+  };
+  console.log(now)
   const withGenresSaerch = async () => {
     try {
       const res = await axios(
@@ -46,8 +74,10 @@ const MovieContextProvider = ({ children }) => {
   useEffect(() => {
     getMovies(FEATURED_API);
 
-    // popularMovies();
+    popularMovies();
     withGenresSaerch();
+    popularMovies();
+    nowPlaying();
     // topRatedMovies()
   }, []);
 
@@ -58,6 +88,10 @@ const MovieContextProvider = ({ children }) => {
         loading,
         getMovies,
         moviePages,
+        popularMovies,
+        popular,
+        nowPlaying,
+        now,
       }}
     >
       {children}
