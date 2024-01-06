@@ -32,7 +32,7 @@ const Main = () => {
   };
   const handleMinus = (e) => {
     if (page > 3) {
-      setPage(prevPage => prevPage - 3);
+      setPage((prevPage) => prevPage - 3);
     }
     setIsActiveMinus(!isActiveMinus);
     setIsActivePlus(false);
@@ -41,11 +41,11 @@ const Main = () => {
     moviePages(page - 3);
   };
   const handlePlus = (e) => {
-    setPage(prevPage => prevPage + 3);
+    setPage((prevPage) => prevPage + 3);
     setIsActiveMinus(false);
     setIsActivePlus(!isActivePlus);
     console.log(page);
-    moviePages(page+3);
+    moviePages(page + 3);
   };
   const handlePage = (e) => {
     console.log(e.target.innerText);
@@ -86,26 +86,26 @@ const Main = () => {
             <button
               className={`mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out  hover:bg-yellow-400 cursor-pointer ${
                 isActiveMinus ? "bg-yellow-400" : ""
-              } active:bg-yellow-400`}
+              } active:bg-yellow-400  dark:text-white`}
               aria-label="Previous"
               onClick={handleMinus}
             >
               -
             </button>
             <button
-              className={`mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out  hover:bg-red-400 cursor-pointer `}
+              className={`mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out  hover:bg-red-400 cursor-pointer dark:text-white `}
               onClick={handlePage}
             >
               {page}
             </button>
-            <li
-              className="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out  hover:bg-red-400 cursor-pointer"
+            <button
+              className="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out  hover:bg-red-400 cursor-pointer  dark:text-white"
               onClick={handlePage}
             >
               {page + 1}
-            </li>
+            </button>
             <button
-              className="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out  hover:bg-red-400 cursor-pointer"
+              className="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out  hover:bg-red-400 cursor-pointer  dark:text-white"
               onClick={handlePage}
             >
               {page + 2}
@@ -113,7 +113,7 @@ const Main = () => {
             <button
               className={`mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out  hover:bg-yellow-400 cursor-pointer ${
                 isActivePlus ? "bg-yellow-400" : ""
-              } active:bg-yellow-400`}
+              } active:bg-yellow-400  dark:text-white`}
               aria-label="Next"
               onClick={handlePlus}
             >
