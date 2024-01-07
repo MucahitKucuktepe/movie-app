@@ -31,3 +31,7 @@ SOLUTION
 ├── .env
 └── yarn.lock
 ```
+![Proje Görüntüsü](src/assets/movie_app.gif)
+
+https://movie-app-with-tmdb-api.netlify.app
+
